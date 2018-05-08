@@ -6,35 +6,35 @@ Wil je niet de hele tutorial volgen maar alleen het eind resultaat zien klik dan
 
 
 
-## Dependencies
+## Afhankelijkheden
 
-Deze demo is geschreven en getest binnen een windows 10 omgeving en niet getest op andere platforms. Het is dus niet gegarandeerd dat deze demo ook werkt op platforms als MacOS en Linux.
+Deze demo is geschreven en getest binnen een Windows 10 omgeving en niet getest op andere platforms. Het is dus niet gegarandeerd dat deze demo ook werkt op andere platforms als MacOS en Linux.
 
 Voor deze demo dienen een aantal zaken geïnstalleerd te zijn op de omgeving waarin deze demo wordt uitgevoerd.
 
 - Python versie 3.6.4 	(https://www.python.org/downloads/release/python-364/)
-	 Pip versie 10.0.1  		(https://pip.pypa.io/en/stable/installing/)
+- Pip versie 10.0.1  		(https://pip.pypa.io/en/stable/installing/)
 
 
 
-De code voor deze demo is geschreven in notepad++ (https://notepad-plus-plus.org/download/v7.5.6.html).
+De code voor deze demo is geschreven in Notepad++ (https://notepad-plus-plus.org/download/v7.5.6.html).
 
 
 
 ## Tutorial
 
-Aan de hand van het onderstaande stappenplan gaan we een python applicatie die gebruikt maakt van het decision tree machine learning algoritme.
+Aan de hand van het onderstaande stappenplan gaan we een Python applicatie die gebruikt maakt van het decision tree machine learning algoritme.
 
 ### 1. Project opzetten
 
 Voordat we kunnen beginnen aan het maken van de applicatie moeten we de omgeving inrichten waarin we de applicatie gaan bouwen.
 
-1. Zorg dat je al de dependecies geïnstalleerd hebt.
+1. Zorg dat je alle afhankelijkheden geïnstalleerd hebt.
 2. Maak een folder aan voor dit project. Hierin gaan we alles van deze tutorial bewaren.
-2. Kopieer de 2 CSV bestanden uit dit repository naar de net gemaakte folder. Deze bestanden bevatten de data om het machine learning algoritme te trainen.
-3. Open een powershell window en navigeer naar de net aangemaakte folder.
-4. Run het volgende commando `pip install -U scikit-learn` in het net geopende powershel window. Hiermee installeren we scikit. Dit framework gaan we gebruiken voor onze machine learning applicatie.
-5. In onze projectfolder, maak een nieuw bestand aan genaamd `Example_DecisionTree.py`. Dit is het bestand voor ons programma.
+2. Kopieer de twee CSV-bestanden uit dit repository naar de net gemaakte folder. Deze bestanden bevatten de data om het machine learning algoritme te trainen.
+4. Open een PowerShell-venster en navigeer naar de net aangemaakte folder.
+5. Run het volgende commando `pip install -U scikit-learn` in het net geopende PowerShell-venster. Hiermee installeren we scikit. Dit framework gaan we gebruiken voor onze machine learning applicatie.
+5. In de projectfolder, maak een nieuw bestand aan genaamd `Example_DecisionTree.py`. Dit is het bestand voor ons programma.
 
 
 
@@ -44,7 +44,7 @@ Nu we een omgeving hebben voor onze applicatie kunnen we beginnen met het ontwik
 
 1. Open het zojuist aangemaakte `Example_DecisionTree.py` bestand.
 
-2. Als eerste gaan we er voor zorgen dat we data voor in onze applicatie hebben om het machine learning model te trainen. Dit gaan we doen door de 2 CSV bestanden in te lezen in de applicatie. Hiervoor moeten we als eerste de csv module van Python importeren. Daarna kunnen we de 2 CSV files inlezen zoals hieronder. Controleer of de code werkt door het commando `python Example_DecisionTree.py` uit te voeren in het powershellwindow, als het goed is krijg je 2 lijsten met data te zien.
+2. Als eerste gaan we er voor zorgen dat we data voor in onze applicatie hebben om het machine learning model te trainen. Dit gaan we doen door de twee CSV-bestanden in te lezen in de applicatie. Hiervoor moeten we als eerste de csv module van Python importeren. Daarna kunnen we de twee CSV-bestanden inlezen zoals hieronder. Controleer of de code werkt door het commando `python Example_DecisionTree.py` uit te voeren in het PowerShell-venster, als het goed is krijg je twee lijsten met data te zien.
 
 	```python
 	import csv
@@ -58,13 +58,13 @@ Nu we een omgeving hebben voor onze applicatie kunnen we beginnen met het ontwik
 		print(fruitNames)
 	```
 
-3. Nu gaan we de ingeladen data geschikt maken om te gebruiken voor het trainen van het machine learning algoritme. Als eerste gaan we de data opsplitsen in trainings- en testdata. Hiervoor moeten we de ingeladen data eerst husselen. Dit doen we door de shuffle methode te gebruiken. Vervolgens verdelen we de data volgens een 70/30 verhouding over de trainings- en testdata. Hierbij scheiden we ook meteen het label van de features omdat dit moet voor het scikit-framework. Onze code ziet er nu als volgt uit:
+3. Nu gaan we de ingelezen data geschikt maken om te gebruiken voor het trainen van het machine learning algoritme. Als eerste gaan we de data opsplitsen in trainings- en testdata. Hiervoor moeten we de ingeladen data eerst husselen. Dit doen we door de shuffle methode te gebruiken. Vervolgens verdelen we de data volgens een 70/30 verhouding over de trainings- en testdata. Hierbij scheiden we ook meteen het label van de features omdat dit moet voor het scikit-framework. Onze code ziet er nu als volgt uit:
 
    ```python
    import csv
    from random import shuffle
 
-   # inlezen van de csv bestanden
+   # read csv files
    with open('FruitData.csv', 'r') as DataFile:
    	csvList = list(csv.reader(DataFile))
    	shuffle(csvList)
@@ -82,7 +82,7 @@ Nu we een omgeving hebben voor onze applicatie kunnen we beginnen met het ontwik
    features = []
    labels = []
 
-   # splitsen van de labels en de data
+   # split labels from features
    for item in testData:
    	test_labels.append(item[0])
    	test_features.append(item[1:4].copy())
@@ -92,14 +92,14 @@ Nu we een omgeving hebben voor onze applicatie kunnen we beginnen met het ontwik
    	features.append(item[1:4].copy())
    ```
 
-4. Nu onze data geschikt is om te gebruiken kunnen we het machine learning gedeelte van onze applicatie gaan bouwen. Er zijn 2 dingen die we moeten doen. Als eerste moeten we een classifier aanmaken. Deze moeten we vervolgens trainen doormiddel van de trainingsdata.
+4. Nu onze data geschikt is om te gebruiken kunnen we het machine learning gedeelte van onze applicatie gaan bouwen. Er zijn twee dingen die we moeten doen. Als eerste moeten we een classifier aanmaken. Deze moeten we vervolgens trainen door middel van de trainingsdata.
 
    ```python
    import csv
    from random import shuffle
    from sklearn import tree
 
-   # inlezen van de csv bestanden
+   # read csv files
    with open('FruitData.csv', 'r') as DataFile:
    	csvList = list(csv.reader(DataFile))
    	shuffle(csvList)
@@ -117,7 +117,7 @@ Nu we een omgeving hebben voor onze applicatie kunnen we beginnen met het ontwik
    features = []
    labels = []
 
-   # splitsen van de labels en de features
+   # split labels from features
    for item in testData:
    	test_labels.append(item[0])
    	test_features.append(item[1:4].copy())
@@ -126,23 +126,23 @@ Nu we een omgeving hebben voor onze applicatie kunnen we beginnen met het ontwik
    	labels.append(item[0])
    	features.append(item[1:4].copy())
    	
-   # aanmaken van een decision tree classifier
+   # create a decision tree classifier
    DT_clf = tree.DecisionTreeClassifier()
-   # trainen van de classifier met de ingeladen trainingsdata
+   # train the classifier with the trainingsdata
    DT_clf = DT_clf.fit(features,labels)
 
-   # testen van de classifier d.m.v. de test data
+   # test the classifier the loaded testdata
    print(DT_clf.predict(test_features))
    print(test_labels)
    ```
-   Nu kunnen we doormiddel van de test data controleren of onze applicatie werkt. Run het programma weer via powershell en bekijk het resultaat. Als het goed is krijg je 2 lijsten van getallen zoals deze te zien. De eerste lijst zijn de voorspellingen van het machine learning algoritme, de tweede zijn de daadwerkelijke waardes. 
+   Nu kunnen we door middel van de test data controleren of onze applicatie werkt. Draai het programma weer via PowerShell en bekijk het resultaat. Als het goed is krijg je twee lijsten van getallen te zien, zoals hieronder weergeven. De eerste lijst zijn de voorspellingen van het machine learning algoritme, de tweede zijn de daadwerkelijke waardes. 
 
    `['3' '7' '8' '3' '2' '5' '8' '7' '5' '7' '6' '10' '10' '10' '8' '9' '8']`
    `['4', '7', '3', '5', '2', '5', '4', '5', '5', '7', '6', '10', '10', '10', '7', '7', '8']`
 
    ​
 
-5. Als laatste gaan we nog wat simpele user controls toevoegen aan de applicatie om hem zo bruikbaar te maken.
+5. Als laatste gaan we nog wat simpele user controls toevoegen aan de applicatie om het zo bruikbaarder te maken.
 
    ```python
    import csv
@@ -184,7 +184,7 @@ Nu we een omgeving hebben voor onze applicatie kunnen we beginnen met het ontwik
 
    print("\nHello, I am Fruity. \nI can predict what kind of fruit you have. \nFor this I only need to know the height, width and weight.")
    print("\nPlease only ask for pieces of fruit that I know, these are the following:")
-   for fruit in fruitNames
+   for fruit in fruitNames:
    	print("- "+fruit[1])
 
    while True:

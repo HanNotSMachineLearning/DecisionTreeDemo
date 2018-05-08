@@ -36,6 +36,9 @@ DT_clf = tree.DecisionTreeClassifier()
 DT_clf = DT_clf.fit(features,labels)
 
 print("\nHello, I am Fruity. \nI can predict what kind of fruit you have. \nFor this I only need to know the height, width and weight.")
+print("\nPlease only ask for pieces of fruit that I know, these are the following:")
+for fruit in fruitNames:
+	print("\t- "+fruit[1])
 
 while True:
 	print("\nTell me what the height of your piece of fruit is in cm.")

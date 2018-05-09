@@ -12,12 +12,9 @@ Deze demo is geschreven en getest binnen een Windows 10 omgeving en niet getest 
 
 Voor deze demo dienen een aantal zaken geïnstalleerd te zijn op de omgeving waarin deze demo wordt uitgevoerd.
 
-- Python versie 3.6.4 	(https://www.python.org/downloads/release/python-364/)
-- Pip versie 10.0.1  		(https://pip.pypa.io/en/stable/installing/)
+- Python versie 3.6 	(https://www.python.org/downloads/release/python-364/)
+- Pip versie 10.0  		(https://pip.pypa.io/en/stable/installing/)
 
-
-
-De code voor deze demo is geschreven in Notepad++ (https://notepad-plus-plus.org/download/v7.5.6.html).
 
 
 

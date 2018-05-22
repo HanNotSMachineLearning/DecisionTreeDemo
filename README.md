@@ -2,7 +2,7 @@
 
 Deze tutorial laat zien hoe je een decision tree machine learning applicatie kan maken in Python.
 
-Wil je niet de hele tutorial volgen maar alleen het eind resultaat zien klik dan [hier](##Programma draaien).
+Wil je niet de hele tutorial volgen maar alleen het eind resultaat zien klik dan [hier](#Programma draaien).
 
 
 
